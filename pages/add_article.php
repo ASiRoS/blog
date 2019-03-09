@@ -1,32 +1,13 @@
 <?php
 
-require '../db/db_article.php';
-require '../helpers/form.php';
+require_once '../includes.php';
+
+deny_access_unless_logged();
 
 form_handler(function ($article) {
     add_article($article);
 
-    header('Location: index.php');
+    redirect('/index.php');
 });
 
-?>
-
-<?php ob_start(); ?>
-    <form action="" method="POST">
-        <fieldset>
-            <legend>Add article</legend>
-            <div class="article-input">
-                <label for="name">Article's name:</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div class="article-input">
-                <label for="description">Article's description:</label>
-                <textarea name="description" id="description"></textarea>
-            </div>
-
-            <button type="submit">Add article</button>
-        </fieldset>
-    </form>
-<?php $content = ob_get_clean(); ?>
-
-<?php require '../layouts/main.php'; ?>
+view('add_article');

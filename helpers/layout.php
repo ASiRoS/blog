@@ -1,0 +1,62 @@
+<?php
+
+const MAIN_LAYOUT = 'main';
+
+//function get_main_is_loaded() {
+//    static $main_is_loaded = true;
+//
+//    if($main_is_loaded === true) {
+//        $main_is_loaded = false;
+//        return true;
+//    }
+//
+//    return $main_is_loaded;
+//}
+
+function view($layouts, $data = []) {
+    if(is_array($layouts)) {
+        foreach ($layouts as $layout) {
+            view($layout);
+        }
+
+        return;
+    }
+
+    ob_start();
+    load_layout($layouts, $data);
+    $content = ob_get_clean();
+
+    load_layout(MAIN_LAYOUT, $content);
+
+//    if(!get_main_is_loaded()) {
+//        ob_start();
+//        load_layout($layouts, $data);
+//        $content = ob_get_clean();
+//        load_layout(MAIN_LAYOUT, $content);
+//    }
+
+    delete_errors();
+}
+
+
+function load_layout($layout, $data = [])
+{
+    $path = __DIR__  . '/../layouts/';
+    $file = $path . $layout . '.php';
+
+    if (file_exists($file)) {
+        if(!empty($data)) {
+            if(is_string($data)) {
+                $content = $data;
+                $data = [];
+                $data['content'] = $content;
+            }
+
+            if(is_array($data)) {
+                extract($data);
+            }
+        }
+
+        require_once $file;
+    }
+}

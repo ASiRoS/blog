@@ -1,7 +1,7 @@
 <?php
 
-require 'db/db_article.php';
+require_once 'includes.php';
 
 $articles = get_articles();
 
-require 'layouts/articles.php';
+view('articles', ['articles' => $articles]);
