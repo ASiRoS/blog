@@ -2,16 +2,16 @@
 
 const MAIN_LAYOUT = 'main';
 
-//function get_main_is_loaded() {
-//    static $main_is_loaded = true;
-//
-//    if($main_is_loaded === true) {
-//        $main_is_loaded = false;
-//        return true;
-//    }
-//
-//    return $main_is_loaded;
-//}
+function get_main_is_loaded() {
+    static $main_is_loaded = true;
+
+    if($main_is_loaded == true) {
+        $main_is_loaded = false;
+        return true;
+    }
+
+    return $main_is_loaded;
+}
 
 function view($layouts, $data = []) {
     if(is_array($layouts)) {
@@ -22,18 +22,15 @@ function view($layouts, $data = []) {
         return;
     }
 
-    ob_start();
-    load_layout($layouts, $data);
-    $content = ob_get_clean();
+    if(get_main_is_loaded()) {
+        load_layout($layouts, $data);
+    } else {
+        ob_start();
+        load_layout($layouts, $data);
+        $content = ob_get_clean();
 
-    load_layout(MAIN_LAYOUT, $content);
-
-//    if(!get_main_is_loaded()) {
-//        ob_start();
-//        load_layout($layouts, $data);
-//        $content = ob_get_clean();
-//        load_layout(MAIN_LAYOUT, $content);
-//    }
+        load_layout(MAIN_LAYOUT, $content);
+    }
 
     delete_errors();
 }

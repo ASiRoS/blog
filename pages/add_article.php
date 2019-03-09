@@ -4,7 +4,7 @@ require_once '../includes.php';
 
 deny_access_unless_logged();
 
-form_handler(function ($article) {
+post_handler(function ($article) {
     add_article($article);
 
     redirect('/index.php');

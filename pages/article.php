@@ -2,12 +2,12 @@
 
 require_once '../includes.php';
 
-form_handler(function ($comment) {
+post_handler(function ($comment) {
     deny_access_unless_logged();
 
     add_comment($_GET['id'], $comment['text']);
 
-    header('Location:'. $_SERVER['REQUEST_URI']);
+    refresh();
 });
 
 if(isset($_GET['id'])) {

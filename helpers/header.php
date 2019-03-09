@@ -5,7 +5,12 @@ function error404() {
     die;
 }
 
+function refresh() {
+    header('Refresh: 0');
+    die;
+}
+
 function redirect($url) {
     header('Location: '. $url);
-    exit;
+    die;
 }

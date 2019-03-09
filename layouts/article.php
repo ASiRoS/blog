@@ -6,6 +6,4 @@
 
 <hr>
 
-<?php load_layout('add_comment') ?>
-
-<?php load_layout('comments', ['comments' => $comments]) ?>
+<?php view(['add_comment', 'comments'], ['comments' => $comments]) ?>

@@ -6,7 +6,7 @@ deny_access('Вы не можете войти на страницу входа,
     return is_logged();
 });
 
-$handler = form_handler(function ($user) {
+$handler = post_handler(function ($user) {
     $user = get_user($user);
 
     if($user) {
