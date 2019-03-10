@@ -6,6 +6,9 @@ post_handler(function ($comment) {
     deny_access_unless_logged();
 
     $comment['article_id'] = $_GET['id'];
+
+    check_if_not_empty($comment);
+
     add_comment($comment);
 
     refresh();

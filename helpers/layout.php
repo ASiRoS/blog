@@ -33,6 +33,7 @@ function view($layouts, $data = []) {
         load_layout(MAIN_LAYOUT, $content);
     }
 
+    delete_succes();
     delete_errors();
 }
 

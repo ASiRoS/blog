@@ -3,6 +3,7 @@
 require_once 'helpers/header.php';
 require_once 'helpers/lib.php';
 require_once 'helpers/session.php';
+require_once 'helpers/validation.php';
 
 require_once 'db/db.php';
 require_once 'db/db_article.php';

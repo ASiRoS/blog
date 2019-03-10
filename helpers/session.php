@@ -34,10 +34,15 @@ function get_errors() {
     return $_SESSION['errors'];
 }
 
+function delete_succes() {
+    if(isset($_SESSION['success'])) {
+        unset($_SESSION['success']);
+    }
+}
+
 function delete_errors() {
-    if(!isset($_SESSION['errors'])) {
-        $_SESSION['errors'] = [];
+    if(isset($_SESSION['errors'])) {
+        unset($_SESSION['errors']);
     }
 
-    unset($_SESSION['errors']);
 }

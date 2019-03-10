@@ -20,5 +20,5 @@ function get_articles() {
 function add_article(array $article) {
     $article['user_id'] = get_user_id();
 
-    insert('article', $article);
+    insert('articles', $article);
 }
