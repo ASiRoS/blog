@@ -5,7 +5,8 @@ require_once '../includes.php';
 post_handler(function ($comment) {
     deny_access_unless_logged();
 
-    add_comment($_GET['id'], $comment['text']);
+    $comment['article_id'] = $_GET['id'];
+    add_comment($comment);
 
     refresh();
 });

@@ -1,15 +1,15 @@
 <form action="" method="POST">
     <fieldset>
-        <legend>Login: </legend>
-        <div class="article-input">
+        <legend>Register: </legend>
+        <div class="form-group">
             <label for="login">Login:</label>
-            <input name="login" id="login">
+            <input class="form-control" name="login" id="login">
         </div>
-        <div class="article-input">
+        <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+            <input class="form-control" type="password" name="password" id="password">
         </div>
 
-        <button type="submit">Register</button>
+        <button class="btn btn-primary" type="submit">Register</button>
     </fieldset>
 </form>

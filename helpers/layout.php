@@ -3,11 +3,12 @@
 const MAIN_LAYOUT = 'main';
 
 function get_main_is_loaded() {
-    static $main_is_loaded = true;
+    static $main_is_loaded = false;
 
-    if($main_is_loaded == true) {
-        $main_is_loaded = false;
-        return true;
+    if($main_is_loaded == false) {
+        $main_is_loaded = true;
+
+        return false;
     }
 
     return $main_is_loaded;
@@ -16,7 +17,7 @@ function get_main_is_loaded() {
 function view($layouts, $data = []) {
     if(is_array($layouts)) {
         foreach ($layouts as $layout) {
-            view($layout);
+            view($layout, $data);
         }
 
         return;

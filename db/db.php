@@ -14,3 +14,66 @@ function db_connect() {
 
     return $conn;
 }
+
+
+function insert($table, $fields) {
+    $connect = db_connect();
+
+    $tableFields = [];
+    $fieldsValues = [];
+
+    foreach ($fields as $key => $value) {
+        $tableFields[] = $key;
+
+        $escaped = mysqli_real_escape_string($connect, $value);
+        $fieldsValues[] = '"'. $escaped . '"';
+    }
+
+    $tableFields = implode(', ', $tableFields);
+    $fieldsValues = implode(', ', $fieldsValues);
+
+    $sql = "INSERT INTO $table($tableFields) VALUES($fieldsValues)";
+
+    $query = mysqli_query($connect, $sql);
+
+    if($query === false) {
+        dd(mysqli_error($connect));
+    }
+}
+
+function select($table, $fields = [], $one = false) {
+    $connect = db_connect();
+
+    $sql = "SELECT * FROM $table";
+
+    $i = 0;
+    $len = count($fields) - 1;
+
+    if($len >= 0) {
+        $sql .= " WHERE";
+    }
+
+    foreach ($fields as $key => $value) {
+        $escaped = '"' . mysqli_real_escape_string($connect, $value) . '"';
+
+        $sql .= " $key = $escaped";
+
+        if($i !== $len) {
+            $sql .= 'AND ';
+        }
+
+        $i++;
+    }
+
+    $query = mysqli_query($connect, $sql);
+
+    $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    if(count($result) === 1 && $one === true) {
+       return $result[0];
+    }
+
+    mysqli_close($connect);
+
+    return $result;
+}
