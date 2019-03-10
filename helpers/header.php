@@ -7,10 +7,20 @@ function error404() {
 
 function refresh() {
     header('Refresh: 0');
+    set_redirect( true);
     die;
 }
 
 function redirect($url) {
     header('Location: '. $url);
+    set_redirect(true);
     die;
+}
+
+function is_redirect() {
+    return isset($_SESSION['redirect']) && $_SESSION['redirect'] === true;
+}
+
+function set_redirect($bool) {
+    $_SESSION['redirect'] = $bool;
 }

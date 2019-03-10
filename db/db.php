@@ -47,9 +47,9 @@ function select($table, $fields = [], $one = false) {
     $sql = "SELECT * FROM $table";
 
     $i = 0;
-    $len = count($fields) - 1;
+    $count = count($fields) - 1;
 
-    if($len >= 0) {
+    if($count >= 0) {
         $sql .= " WHERE";
     }
 
@@ -58,7 +58,7 @@ function select($table, $fields = [], $one = false) {
 
         $sql .= " $key = $escaped";
 
-        if($i !== $len) {
+        if($i !== $count) {
             $sql .= 'AND ';
         }
 

@@ -2,19 +2,18 @@
 
 require_once '../includes.php';
 
-deny_access('Вы не можете войти на страницу входа, потому что уже вошли.', function() {
-    return is_logged();
-});
+deny_access('You can\'t enter login page.', is_logged());
 
-$handler = post_handler(function ($user) {
-    $user = get_user($user);
+$handler = post_handler(function ($request) {
+    $user = get_user_by_login($request['login']);
 
-    if($user) {
+    if(password_verify($request['password'], $user['password'])) {
         set_user($user);
+        set_success('You logged in successfully!');
 
-        set_success('Вы успешно вошли!');
+        redirect('/');
     } else {
-        set_error('Вы ввели неправильно логин или пароль.');
+        set_error('You have entered login or password wrong.');
     }
 });
 

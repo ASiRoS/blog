@@ -5,7 +5,7 @@ function deny_access($message = 'You cannot enter here.', $deny = true) {
 
     if($deny == true) {
         set_error($message);
-        header('Location: /');
+        redirect('/');
     }
 }
 

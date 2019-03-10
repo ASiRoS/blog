@@ -11,16 +11,17 @@
 </head>
 <body>
 
-<?php view('nav'); ?>
+{% include 'nav.html.twig' %}
 
 <div class="container">
-    <?php if(is_logged()): ?>
-        <div class="mb-3">You're logged in as: <?=get_user_login()?></div>
-    <?php endif; ?>
+    {%  if is_logged %}
+        <div class="mb-3">You're logged in as: {{ user_login }}</div>
+    {% endif %}
 
-    <?php view(['success', 'errors']); ?>
+    {% include 'success.html.twig' %}
+    {% include 'errors.html.twig' %}
 
-    <?=$content;?>
+    {% block content %}{% endblock %}
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

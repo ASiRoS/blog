@@ -1,0 +1,13 @@
+{% extends 'main.html.twig' %}
+
+{% block content %}
+    <div class="articles">
+        {{ dump() }}
+        {% for article in articles %}
+            <article>
+                <a class="name" href="/pages/article.php?id={{ article.id }}>">{{ article.name }}</a>
+            </article>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

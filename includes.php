@@ -1,5 +1,7 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 require_once 'helpers/header.php';
 require_once 'helpers/lib.php';
 require_once 'helpers/session.php';

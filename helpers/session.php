@@ -34,7 +34,7 @@ function get_errors() {
     return $_SESSION['errors'];
 }
 
-function delete_succes() {
+function delete_success() {
     if(isset($_SESSION['success'])) {
         unset($_SESSION['success']);
     }
@@ -44,5 +44,13 @@ function delete_errors() {
     if(isset($_SESSION['errors'])) {
         unset($_SESSION['errors']);
     }
+}
 
+function delete_messages() {
+    if(!is_redirect()) {
+        delete_success();
+        delete_errors();
+    }
+
+    set_redirect(false);
 }

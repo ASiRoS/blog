@@ -1,0 +1,7 @@
+{% if success %}
+    <ul>
+        {% for message in success %}
+            <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
