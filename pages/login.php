@@ -17,5 +17,5 @@ $handler = post_handler(function ($request) {
     }
 });
 
-view('login');
+echo $render('login');
 

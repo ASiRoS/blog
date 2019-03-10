@@ -10,4 +10,4 @@ post_handler(function (array $user) {
     redirect('/pages/login.php');
 });
 
-view('register');
+echo $render('register');

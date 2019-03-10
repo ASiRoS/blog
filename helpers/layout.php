@@ -9,13 +9,26 @@ function twig_init() {
         'cache' => false // __DIR__ . '/../cache',
     ]);
 
-    $twig->addExtension(new \Twig\Extension\DebugExtension());
+    $globals = [
+        'is_logged' => is_logged(),
+        'user_login' => get_user_login(),
+        'errors' => get_errors(),
+        'success' => get_success()
+    ];
+
+    foreach ($globals as $global => $value) {
+        $twig->addGlobal($global, $value);
+    }
 
     return $twig;
 }
 
 $twig = twig_init();
 
-$render = function ($file_name, $data) use ($twig) {
-    return $twig->render($file_name . '.html.twig', $data);
+$render = function ($file_name, $data = []) use ($twig) {
+    $result = $twig->render($file_name . '.html.twig', $data);
+
+    delete_messages();
+
+    return $result;
 };

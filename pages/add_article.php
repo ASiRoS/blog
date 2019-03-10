@@ -10,4 +10,4 @@ post_handler(function ($article) {
     redirect('/index.php');
 });
 
-view('add_article');
+echo $render('add_article');

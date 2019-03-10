@@ -25,7 +25,7 @@ if(isset($_GET['id'])) {
 
     $comments = get_comments($article_id);
 
-    view('article', ['article' => $article, 'comments' => $comments]);
+    echo $render('article', ['article' => $article, 'comments' => $comments]);
 } else {
     error404();
 }

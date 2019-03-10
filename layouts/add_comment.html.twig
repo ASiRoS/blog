@@ -1,5 +1,5 @@
-<?php if(is_logged()): ?>
-    <form action="article.php?id=<?php echo $_GET['id']; ?>" method="POST" class="mb-5">
+{% if is_logged %}
+    <form action="article.php?id={{ article.id }}" method="POST" class="mb-5">
         <fieldset>
             <legend>Add comment:</legend>
             <div class="form-group">
@@ -10,4 +10,4 @@
             <button class="btn btn-primary" type="submit">Add comment</button>
         </fieldset>
     </form>
-<?php endif; ?>
+{% endif %}

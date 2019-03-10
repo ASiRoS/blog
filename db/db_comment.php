@@ -7,6 +7,7 @@ function get_comments($article_id) {
         $comments[$key]['author'] = get_user_by_id($comment['user_id']);
     }
 
+
     return $comments;
 }
 

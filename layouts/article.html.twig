@@ -1,0 +1,13 @@
+{% extends 'main.html.twig' %}
+
+{% block content %}
+    <article>
+        <p class="author"><b>Author Name:</b>{{ article.author.login }} </p>
+        <p class="name"><b>Article Name:</b> {{ article.name }}</p>
+        <p class="description"><b>Article Description: </b>{{ article.description }}</p>
+    </article>
+    <hr>
+
+    {% include 'add_comment.html.twig' %}
+    {% include 'comments.html.twig' %}
+{% endblock %}
