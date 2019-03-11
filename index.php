@@ -1,9 +1,14 @@
 <?php
 
-require_once 'includes.php';
+require_once 'vendor/autoload.php';
 
-$articles = get_articles();
+$db = new App\Database('localhost', 'root', '', 'blog');
 
-echo $render('articles', [
-    'articles' => $articles,
-]);
+$users = $db
+    ->select('articles')
+    ->where(['id' => 3])
+    ->execute()
+    ->fetchAll()
+;
+
+var_dump($users);
