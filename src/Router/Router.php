@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Router;
 
 class Router
 {
@@ -14,7 +14,6 @@ class Router
     public function get($route, callable $func)
     {
         $route = new Route(['GET'], $route, $func);
-
         $this->routeCollection->addRoute($route);
     }
 
@@ -26,5 +25,4 @@ class Router
             }
         }
     }
-
 }

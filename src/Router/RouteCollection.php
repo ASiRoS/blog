@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Router;
+
+use App\Helpers\Iterator;
 
 class RouteCollection implements \Iterator
 {
