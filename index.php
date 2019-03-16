@@ -2,13 +2,19 @@
 
 require_once 'vendor/autoload.php';
 
-$db = new App\Database('localhost', 'root', '', 'blog');
+$db = new App\Database('localhost', 'root', '123456', 'blog');
 
-$users = $db
-    ->select('articles')
-    ->where(['id' => 3])
-    ->execute()
-    ->fetchAll()
-;
+$route = new \App\Router();
 
-var_dump($users);
+$route->get('/articles', function () use ($db) {
+    $articles =
+        $db
+            ->select('articles')
+            ->execute()
+            ->fetchAll()
+    ;
+
+    var_dump($articles);
+});
+
+$route->match();
