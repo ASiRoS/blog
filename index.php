@@ -1,14 +1,13 @@
-<?php
+<?php 
 
 require_once 'vendor/autoload.php';
 
-$db = new App\Database('localhost', 'root', '', 'blog');
 
-$users = $db
-    ->select('articles')
-    ->where(['id' => 3])
-    ->execute()
-    ->fetchAll()
-;
+$db = new App\Database1('blog', 'localhost', 'root', '');
 
-var_dump($users);
+$articles = $db->select("SELECT * FROM Articles")
+				->where()
+				->execute()
+				->fetchAll();
+
+var_dump($articles);
