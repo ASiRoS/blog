@@ -1,6 +1,24 @@
 <?php 
-require_once 'includes.php';
 
-$articles = get_articles();
+require_once 'vendor/autoload.php';
+/*
+$tx = new App\View('hello');
 
-view('articles', ['articles' => $articles]);
+
+
+$twig = new Helpers\Twig();
+
+$render = $twig->render('layout');
+
+
+*/
+
+
+$db = new App\Database('blog', 'localhost', 'root', '');
+
+$articles = $db->select("SELECT * FROM Articles")
+				->where()
+				->execute()
+				->fetchAll();
+
+var_dump($articles);
