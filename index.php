@@ -1,20 +1,9 @@
 <?php 
 
 require_once 'vendor/autoload.php';
-/*
-$tx = new App\View('hello');
 
 
-
-$twig = new Helpers\Twig();
-
-$render = $twig->render('layout');
-
-
-*/
-
-
-$db = new App\Database('blog', 'localhost', 'root', '');
+$db = new App\Database1('blog', 'localhost', 'root', '');
 
 $articles = $db->select("SELECT * FROM Articles")
 				->where()
