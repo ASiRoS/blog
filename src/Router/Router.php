@@ -11,7 +11,7 @@ class Router
         $this->routeCollection = new RouteCollection();
     }
 
-    public function get($route, callable $func)
+    public function get($route, $func)
     {
         $route = new Route(['GET'], $route, $func);
         $this->routeCollection->addRoute($route);
@@ -21,7 +21,7 @@ class Router
     {
         foreach ($this->routeCollection as $route) {
             if ($route->getUrl() === $_SERVER['REQUEST_URI'] && in_array($_SERVER['REQUEST_METHOD'], $route->getMethods())) {
-                call_user_func($route->getAction());
+                $route->runAction();
             }
         }
     }

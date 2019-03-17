@@ -3,8 +3,9 @@
 namespace App\Router;
 
 use App\Helpers\Iterator;
+use App\Helpers\IteratorInterface;
 
-class RouteCollection implements \Iterator
+class RouteCollection implements \Iterator, IteratorInterface
 {
     use Iterator;
 
@@ -13,7 +14,10 @@ class RouteCollection implements \Iterator
     public function addRoute(Route $route)
     {
         $this->routes[] = $route;
+    }
 
-        $this->setIterator($this->routes);
+    public function getIterator() : array
+    {
+        return $this->routes;
     }
 }

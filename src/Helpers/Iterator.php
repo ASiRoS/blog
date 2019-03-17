@@ -4,30 +4,38 @@ namespace App\Helpers;
 
 trait Iterator
 {
-    protected $data;
+    private $iterator;
 
-    protected function setIterator($data)
+    private function setIterator()
     {
-        $this->data = $data;
+        if(!$this instanceof IteratorInterface) {
+            throw new \ErrorException('This trait can be used only for classes that implements IteratorInterface.');
+        }
+
+        if(!$this->iterator) {
+            $this->iterator = $this->getIterator();
+        }
     }
 
     public function rewind() {
-        reset($this->data);
+        $this->setIterator();
+
+        reset($this->iterator);
     }
 
     public function current() {
-        return current($this->data);
+        return current($this->iterator);
     }
 
     public function key() {
-        return key($this->data);
+        return key($this->iterator);
     }
 
     public function next() {
-        next($this->data);
+        next($this->iterator);
     }
 
     public function valid() {
-        return key($this->data) !== null;
+        return key($this->iterator) !== null;
     }
 }

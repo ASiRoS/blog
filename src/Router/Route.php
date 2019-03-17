@@ -12,11 +12,31 @@ class Route
        $action
     ;
 
-    public function __construct(array $methods, string $route, callable $action)
+    public function __construct(array $methods, string $route, $action)
     {
         $this->setMethods($methods);
+        $this->setAction($action);
         $this->url = $route;
-        $this->action = $action;
+    }
+
+    public function setAction($action)
+    {
+        if(is_callable($action)) {
+            $this->action = $action;
+        } elseif(is_string($action)) {
+            $parameters = explode('@', $action);
+
+            if (count($parameters) === 2) {
+                $controller = 'App\Controllers\\' . $parameters[0];
+
+                $controller = new $controller;
+                $action = $parameters[1];
+
+                $this->action = [$controller, $action];
+            } else {
+                throw new \ErrorException('Route is invalid.');
+            }
+        }
     }
 
     public function getMethods(): array
@@ -29,9 +49,9 @@ class Route
         return $this->url;
     }
 
-    public function getAction(): callable
+    public function runAction()
     {
-        return $this->action;
+        call_user_func($this->action);
     }
 
     private function setMethods(array $methods)

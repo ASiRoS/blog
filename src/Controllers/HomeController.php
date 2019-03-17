@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 class HomeController
 {
-    public function homeAction()
+    public function index()
     {
-        
+        echo 1;
     }
 }
