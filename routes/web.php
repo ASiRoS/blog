@@ -12,3 +12,4 @@
 */
 
 Route::resource('articles', 'ArticleController');
+Auth::routes(); 

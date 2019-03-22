@@ -46,7 +46,6 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-
     private function save(Request $request, Article $article = null)
     {
         if($article === null) {
