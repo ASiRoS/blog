@@ -27,4 +27,11 @@ class Comment extends Model
     {
         return $this->belongsTo(Article::class);
     }
+
+    public static function validations()
+    {
+        return [
+            'text' => 'required',
+        ];
+    }
 }

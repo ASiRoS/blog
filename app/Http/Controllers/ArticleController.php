@@ -50,10 +50,7 @@ class ArticleController extends Controller
 
     private function save(Article $article, Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
+        $request->validate(Article::validations());
 
         Article::create($article, $request->all());
 

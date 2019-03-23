@@ -33,4 +33,12 @@ class Article extends Model
         $article->fill($fields);
         $article->save();
     }
+
+    public static function validations()
+    {
+        return [
+            'name' => 'required',
+            'description' => 'required',
+        ];
+    }
 }

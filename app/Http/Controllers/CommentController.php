@@ -10,9 +10,7 @@ class CommentController
 {
     public function store(Article $article, Request $request)
     {
-        $request->validate([
-            'text' => 'required',
-        ]);
+        $request->validate(Comment::validations());
 
         $comment = new Comment();
         $comment->fill($request->all());
