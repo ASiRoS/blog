@@ -21,12 +21,14 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        return $this->save($request);
+        $article = new Article();
+
+        return $this->save($article, $request);
     }
 
     public function show(Article $article)
     {
-        return view('articles.view', compact('article'));
+        return view('articles.show', compact('article'));
     }
 
     public function edit(Article $article)
@@ -34,26 +36,26 @@ class ArticleController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Article $article, Request $request)
+    public function update(Request $request, Article $article)
     {
-        return $this->save($request, $article);
+        return $this->save($article, $request);
     }
 
     public function destroy(Article $article)
     {
         $article->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('success', 'You have deleted your article successfully.');
     }
 
-    private function save(Request $request, Article $article = null)
+    private function save(Article $article, Request $request)
     {
-        if($article === null) {
-            $article = new Article();
-        }
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
 
-        $article->fill($request->all());
-        $article->save();
+        Article::create($article, $request->all());
 
         return redirect()->route('articles.show', ['article' => $article]);
     }

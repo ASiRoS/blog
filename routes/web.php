@@ -11,5 +11,10 @@
 |
 */
 
-Route::resource('articles', 'ArticleController');
-Auth::routes(); 
+Auth::routes();
+
+Route::resource('articles', 'ArticleController')->middleware('auth');
+Route::get('/', 'ArticleController@index')->name('home');
+Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
+
+Route::post('comments/store/{article}', 'CommentController@store')->middleware('auth')->name('comments.store');
