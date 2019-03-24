@@ -3,20 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
     protected $fillable = ['name', 'description'];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function (Article $article) {
-            $article->user_id = Auth::user()->id;
-        });
-    }
 
     public function user()
     {

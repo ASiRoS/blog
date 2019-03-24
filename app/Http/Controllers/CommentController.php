@@ -13,6 +13,7 @@ class CommentController
         $request->validate(Comment::validations());
 
         $comment = new Comment();
+        $comment->user_id = Auth::user()->id;
         $comment->fill($request->all());
         $article->comments()->save($comment);
 

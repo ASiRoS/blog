@@ -14,6 +14,7 @@
                         @endforeach
                         <hr>
                     </div>
+                    {{ $articles->links() }}
                 </div>
             </div>
         </div>
